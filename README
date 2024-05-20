@@ -1,0 +1,21 @@
+HOW TO USE THIS PACKAGE
+=======================
+
+1. The package processes workflows described following the Pegasus project. Download the files at 
+
+https://confluence.pegasus.isi.edu/display/pegasus/WorkflowGenerator
+
+2. Edit the file "run.sh" and add the classpath to the directory containing the cloudsim class files; alternatively, you can add the location of the cloudsim jar file.
+
+3. Implement your provisioning and scheduling algorithm as an extension of the Policy class. Your algorithm is implemented as an implementation of the abstract class "doScheduling(long, VMOffers)". A very simple and inefficient policy ExamplePolicy is provided. In this method, you can see which data structures from Policy need to be filled with the scheduling and provisioning information (i.e., type of VM, start and end time of VM; tasks and their order of execution on each VM).
+
+4. Add your new policy in the properties file "simulation.properties", as a value of the property "scheduling.policy". For example, for our example policy:
+
+scheduling.policy = org.cloudbus.cloudsim.workflow.ExamplePolicy
+
+5. Set the workload file and the deadline in the simulation.properties file. You can also define other parameters such as the configuration of the data center and the network.
+
+6. Run:
+
+./run.sh
+
